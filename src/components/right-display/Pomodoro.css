@@ -1,0 +1,20 @@
+.pomo__container {
+  border: 1px solid black;
+  height: 40%;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 35px;
+  border-radius: 10px;
+  background-color: rgba(178, 208, 178, 0.501);
+}
+
+#pomo__timer {
+  font-size: 115px;
+}
+
+#pomo__button {
+  font-size: 3rem;
+  padding: 5px;
+}
