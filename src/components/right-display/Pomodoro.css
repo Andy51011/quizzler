@@ -1,5 +1,4 @@
 .pomo__container {
-  border: 1px solid black;
   height: 40%;
   width: 35%;
   display: flex;
@@ -10,11 +9,20 @@
   background-color: rgba(178, 208, 178, 0.501);
 }
 
-#pomo__timer {
-  font-size: 115px;
+.pomo__title {
+  font-size: 2.5rem;
+  padding: 4px;
 }
 
-#pomo__button {
-  font-size: 3rem;
-  padding: 5px;
+#pomo__timer {
+  font-size: 5.5rem;
+}
+
+.pomo__display {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-bottom: 10px;
+  border-bottom: 10px solid rgb(244, 238, 238);
 }
