@@ -1,15 +1,16 @@
 import React from "react";
 import "./Pomodoro.css";
 import Button from "@mui/material/Button";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AppContext } from "../../ContextAPI/context.js";
+import { timer } from "./timerUtil.js";
 export const Pomodoro = () => {
   const {
     time,
+    setTime,
     timerStart,
     pickedOption,
     setPickedOption,
-    setTime,
     setTimerStart,
   } = useContext(AppContext);
 
@@ -17,8 +18,32 @@ export const Pomodoro = () => {
   const timeSeconds = time.seconds < 10 ? `0${time.seconds}` : time.seconds;
 
   const handleTime = (e) => {
-    setPickedOption(e.target.value);
+    console.log(timerStart);
+    if (timerStart === false) {
+      setTimerStart(true);
+      setTime({
+        ...time,
+        minutes: e.target.value,
+        seconds: time.seconds,
+      });
+    } else {
+      let countdownTime = timer(time.minutes, time.seconds);
+      setTime({
+        ...time,
+        minutes: countdownTime.minutes,
+        seconds: countdownTime.seconds,
+      });
+    }
   };
+
+  useEffect(() => {
+    let intervalId = setInterval(() => {
+      if (timerStart) {
+        handleTime();
+      }
+    }, 1000);
+    return () => clearInterval(intervalId);
+  });
 
   return (
     <>
