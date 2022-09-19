@@ -1,33 +1,24 @@
 import React from "react";
 import "./Pomodoro.css";
 import Button from "@mui/material/Button";
-import { useEffect } from "react";
-import { timer } from "./timerUtil.js";
-export const Pomodoro = ({ time, setTime, setTimerStart, timerStart }) => {
+import { useState, useContext } from "react";
+import { AppContext } from "../../ContextAPI/context.js";
+export const Pomodoro = () => {
+  const {
+    time,
+    timerStart,
+    pickedOption,
+    setPickedOption,
+    setTime,
+    setTimerStart,
+  } = useContext(AppContext);
+
   const timeMinutes = time.minutes < 10 ? `0${time.minutes}` : time.minutes;
   const timeSeconds = time.seconds < 10 ? `0${time.seconds}` : time.seconds;
 
   const handleTime = (e) => {
-    if (time.minutes === 0 && time.seconds === 0) {
-      let timePicked = e.target.value;
-      setTime({
-        ...time,
-        minutes: timePicked,
-      });
-      setTimerStart(true);
-    } else {
-      setTime(timer(time.minutes, time.seconds));
-    }
+    setPickedOption(e.target.value);
   };
-
-  useEffect(() => {
-    if (timerStart) {
-      let timerInterval = setInterval(() => {
-        handleTime();
-      }, 1000);
-      return () => clearInterval(timerInterval);
-    }
-  });
 
   return (
     <>
@@ -44,9 +35,7 @@ export const Pomodoro = ({ time, setTime, setTimerStart, timerStart }) => {
             Short Break
           </Button>
         </div>
-        <div id="pomo__timer">
-          {timeMinutes}:{timeSeconds}
-        </div>
+        <div id="pomo__timer">{`${timeMinutes}:${timeSeconds} `}</div>
         <Button className="pomo__startbtn" size="large" variant="outlined">
           Start
         </Button>

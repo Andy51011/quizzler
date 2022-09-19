@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { QuizzlerHeader } from "./components/header/QuizzlerHeader.jsx";
+import React, { useState } from "react";
+import { QuizzlerHeader } from "./components/Header/QuizzlerHeader.jsx";
 import { DisplayRight } from "./components/right-display/DisplayRight.jsx";
-import { DisplayLeft } from "./components/left-display/DisplayLeft.jsx";
 import "./App.css";
-import { timer } from "./components/right-display/timerUtil";
+import { AppContext } from "./ContextAPI/context";
 
 const remainingTime = {
   seconds: 0,
@@ -13,18 +12,25 @@ const remainingTime = {
 export const App = () => {
   const [time, setTime] = useState(remainingTime);
   const [timerStart, setTimerStart] = useState(false);
+  const [pickedOption, setPickedOption] = useState("");
 
   return (
     <div className="main__container">
-      <QuizzlerHeader />
-      <section className="display__contents">
-        <DisplayRight
-          time={{ ...time }}
-          setTime={setTime}
-          timerStart={timerStart}
-          setTimerStart={setTimerStart}
-        />
-      </section>
+      <AppContext.Provider
+        value={{
+          time,
+          setTime,
+          timerStart,
+          setTimerStart,
+          pickedOption,
+          setPickedOption,
+        }}
+      >
+        <QuizzlerHeader />
+        <section className="display__contents">
+          <DisplayRight />
+        </section>
+      </AppContext.Provider>
     </div>
   );
 };
