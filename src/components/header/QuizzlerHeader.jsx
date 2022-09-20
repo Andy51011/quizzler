@@ -6,9 +6,7 @@ export const QuizzlerHeader = () => {
     <>
       <div className="header__container">
         <div className="nav__items">
-          <div>Quizzler</div>
           <div>Pomodoro</div>
-          <div>Study</div>
         </div>
       </div>
     </>

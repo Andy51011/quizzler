@@ -9,9 +9,9 @@
 .nav__items {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   width: 30%;
-  font-size: 1.75rem;
+  font-size: 2.75rem;
   padding-bottom: 2px;
   border-bottom: 10px solid rgb(114, 83, 83);
 }

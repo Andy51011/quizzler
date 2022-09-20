@@ -12,7 +12,7 @@ const remainingTime = {
 export const App = () => {
   const [time, setTime] = useState(remainingTime);
   const [timerStart, setTimerStart] = useState(false);
-  const [pickedOption, setPickedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
 
   return (
     <div className="main__container">
@@ -22,8 +22,8 @@ export const App = () => {
           setTime,
           timerStart,
           setTimerStart,
-          pickedOption,
-          setPickedOption,
+          selectedOption,
+          setSelectedOption,
         }}
       >
         <QuizzlerHeader />

@@ -6,15 +6,17 @@ export const timer = (timeMin, timeSec) => {
   let timeInSeconds = timeSec;
   let timeInMinutes = timeMin;
 
-  if (timeInMinutes < 0 && timeInSeconds < 0) {
-    stopTimer();
-  }
-
-  if (timeInSeconds === 0) {
-    timeInMinutes--;
-    timeInSeconds = 59;
+  if (timeInMinutes !== 0) {
+    if (timeInSeconds === 0) {
+      timeInMinutes--;
+      timeInSeconds = 59;
+    } else {
+      timeInSeconds--;
+    }
   } else {
-    timeInSeconds--;
+    if (timeInSeconds > 0) {
+      timeInSeconds--;
+    }
   }
 
   return {
@@ -23,11 +25,3 @@ export const timer = (timeMin, timeSec) => {
   };
 };
 // clear interval to stop timer; this function stops the timer
-const stopTimer = () => {
-  clearInterval(timer);
-};
-
-// calls function every second
-const startTimer = () => {
-  setInterval(timer, 1000);
-};
